@@ -1,0 +1,37 @@
+/*
+Font: ...
+Text Color (...): ...
+Background Color (...): ...
+Primary Color (...): ...
+Secondary Color (...): ...;
+
+Links
+Unvisited Links (...): ...
+Active Link (...): ...
+Visited Link (...): ...
+ */
+
+ :root {
+   --primary-color: ...;
+   --secondary-color: ...;
+   --background-color: ...;
+   --text-color: ...;
+   --unvisited-link-color: ...;
+   --active-link-color: ...;
+   --visited-link-color: ...;
+   --font-weight-body: 400;
+   --font-size-body: 16px;
+   --font-weight-headings: 700;
+   --max-width-container: 700px;
+   --cursor-style: pointer;
+   --transition-opacity: 1s opacity;
+   --margin-center: 0 auto;
+ }
+
+* {
+ box-sizing: border-box;
+ /* forces the padding and border to be included in the final
+ specified width rather than being added on top, with the
+ width of the item itself changing to accommodate the padding
+ and border */
+}
