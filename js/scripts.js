@@ -12,7 +12,7 @@ pokemonList = [
 
   {name: "wartortle",
   height: 1,
-  type: "water","defense"
+  type: ["water", "defense"]
   },
 
   {name: "fearow",
@@ -42,6 +42,6 @@ for (let i=0; i < pokemonList.length; i++) {
   } else if (pokemonList[i].height > 1 && pokemonList[i].height < 3) {
     console.log(pokemonList[i].name + " is a good-sized boi.");
   } else {
-    console.log(pokemonList[i].name + " wat ein Oschi!");
+    console.log(pokemonList[i].name + " is ein Oschi!");
   }
 }
