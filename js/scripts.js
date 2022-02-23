@@ -1,3 +1,4 @@
+// adding list of data entries
 let pokemonList = [];
 pokemonList = [
   {name: "Bulbasaur",
@@ -36,12 +37,16 @@ pokemonList = [
   }
 ];
 
+// create function to write above list in document & console
 function printArrayDetails(list){
   for (let i=0; i < list.length; i++) {
     if (list[i].height > 2) {
-      document.write(" " + list[i].name + " (height: " + list[i].height + ") - Wow, that's big!" + '<br/>');
+      document.write(list[i].name + " (height: " + list[i].height + ") - Wow, that's big!" + '<br/>');
+      console.log(list[i].name + " (height: " + list[i].height + ") - Wow, that's big!");
     } else {
-      document.write(" " + list[i].name + " (height: " + list[i].height + ")" + '<br/>');
+      // or document.write("<p>" + list[i].name + " (height: " + list[i].height + ")" + "</p>")
+      document.write(list[i].name + " (height: " + list[i].height + ")" + '<br/>');
+      console.log(list[i].name + " (height: " + list[i].height + ")");
     }
   }
 }
