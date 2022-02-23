@@ -36,10 +36,14 @@ pokemonList = [
   }
 ];
 
-for (let i=0; i < pokemonList.length; i++) {
-  if (pokemonList[i].height > 2) {
-    document.write(" " + pokemonList[i].name + " (height: " + pokemonList[i].height + ") - Wow, that's big!" + '<br/>');
-  } else {
-    document.write(" " + pokemonList[i].name + " (height: " + pokemonList[i].height + ")" + '<br/>');
+function printArrayDetails(list){
+  for (let i=0; i < list.length; i++) {
+    if (list[i].height > 2) {
+      document.write(" " + list[i].name + " (height: " + list[i].height + ") - Wow, that's big!" + '<br/>');
+    } else {
+      document.write(" " + list[i].name + " (height: " + list[i].height + ")" + '<br/>');
+    }
   }
 }
+
+printArrayDetails(pokemonList);
