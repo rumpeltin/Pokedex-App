@@ -1,4 +1,4 @@
-  // adding list of data entries
+// adding list of data entries
 let pokemonRepository = (function () {
   let pokemonList = [
     {name: "Bulbasaur",
