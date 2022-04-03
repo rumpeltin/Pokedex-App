@@ -35,3 +35,15 @@ Visited Link (...): ...
  width of the item itself changing to accommodate the padding
  and border */
 }
+
+.pokemon-button {
+  border: 1px solid blue;
+  background-color: lightBlue;
+  min-width: 100px;
+  min-height: 50px;
+  cursor: pointer;
+}
+
+ul {
+    list-style-type: none;
+}
