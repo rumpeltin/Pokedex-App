@@ -2,7 +2,9 @@
 let pokemonRepository = (function () {
   let pokemonList = [];
   let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
+  let modalContainer = document.querySelector('#modal-container');
 
+// functions to add & getAll Pokémon
   function add(pokemon) {
     pokemonList.push(pokemon);
   }
@@ -11,6 +13,7 @@ let pokemonRepository = (function () {
     return pokemonList;
   }
 
+// function to fetch list from API
   function loadList() {
     return fetch(apiUrl).then(function (response) {
       return response.json();
@@ -27,6 +30,7 @@ let pokemonRepository = (function () {
     })
   }
 
+// function to trigger showDetails function
   function addListItem(pokemon) {
     let interface = document.querySelector('.pokemon-list');
     let listItem = document.createElement('li');
@@ -45,7 +49,7 @@ let pokemonRepository = (function () {
    return fetch(url).then(function (response) {
      return response.json();
    }).then(function (details) {
-     // Now we add the details to the item
+     // This adds the details to the item
      item.imageUrl = details.sprites.front_default;
      item.height = details.height;
      item.types = details.types;
@@ -54,18 +58,61 @@ let pokemonRepository = (function () {
    });
  }
 
+ // function to show/hide modal
+  function showModal(pokemon) {
+    modalContainer.innerHTML = '';
+    let modal = document.createElement('div');
+    modal.classList.add('modal');
+
+    let text = pokemon.name;
+		let titleElement = (document.innerText = text);
+
+		let heightElement = document.createElement('p');
+		heightElement.innerText = 'Height: ' + pokemon.height;
+
+		let weightElement = document.createElement('p');
+		weightElement.innerText = 'Weight: ' + pokemon.weight;
+
+		let typeElement = document.createElement('p');
+		typeElement.innerText = 'Types: ';
+
+		pokemon.types.forEach((type, numberOfTypes) => {
+			numberOfTypes = pokemon.types.pokemon;
+
+			if (numberOfTypes === 1) {
+				typeElement.innerText += type.type.name;
+			} else {
+				typeElement.innerText += type.type.name + ' ';
+			}
+
+    });
+
+      let imageElement = document.createElement('img');
+  		imageElement.classList.add('modal-image');
+  		imageElement.src = pokemon.imageUrl;
+
+  		modalTitle.append(titleElement);
+  		modalBody.append(imageElement);
+  		modalBody.append(heightElement);
+  		modalBody.append(weightElement);
+  		modalBody.append(typeElement);
+  }
+
+  // function to show details of selected pokémon
    function showDetails(pokemon) {
    loadDetails(pokemon).then(function () {
-     console.log(pokemon);
+     showModal(pokemon);
    });
   }
 
+// all accessible functions in IIFE
   return {
     add: add,
     getAll: getAll,
     addListItem: addListItem,
     loadList: loadList,
-    loadDetails: loadDetails
+    loadDetails: loadDetails,
+    showDetails: showDetails
   };
 })();
 
