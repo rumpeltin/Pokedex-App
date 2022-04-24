@@ -58,7 +58,7 @@ let pokemonRepository = (function () {
    });
  }
 
- // function to show/hide modal
+ // function to show modal
   function showModal(pokemon) {
     let modalContainer = document.querySelector('#modal-container');
     modalContainer.innerHTML = '';
@@ -70,8 +70,8 @@ let pokemonRepository = (function () {
     closeButtonElement.classList.add('modal-close');
     closeButtonElement.innerText = 'Close';
 
-    let text = pokemon.name;
-		let titleElement = (document.innerText = text);
+    let title = pokemon.name;
+		let titleElement = (document.innerText = title);
 
 		let heightElement = document.createElement('p');
 		heightElement.innerText = 'Height: ' + pokemon.height;
@@ -82,34 +82,24 @@ let pokemonRepository = (function () {
 		let typeElement = document.createElement('p');
 		typeElement.innerText = 'Types: ';
 
-		pokemon.types.forEach((type, numberOfTypes) => {
-			numberOfTypes = pokemon.types.pokemon;
+    let imageElement = document.createElement('img');
+		imageElement.classList.add('modal-image');
+		imageElement.src = pokemon.imageUrl;
 
-			if (numberOfTypes === 1) {
-				typeElement.innerText += type.type.name;
-			} else {
-				typeElement.innerText += type.type.name + ' ';
-			}
+		modalContainer.appendChild(modal);
+    modal.appendChild(titleElement);
+		modal.appendChild(imageElement);
+		modal.appendChild(heightElement);
+		modal.appendChild(weightElement);
+		modal.appendChild(typeElement);
 
-    });
-
-      let imageElement = document.createElement('img');
-  		imageElement.classList.add('modal-image');
-  		imageElement.src = pokemon.imageUrl;
-
-  		modal.append(titleElement);
-  		modal.append(imageElement);
-  		modal.append(heightElement);
-  		modal.append(weightElement);
-  		modal.append(typeElement);
-
-      modalContainer.classList.add('is-visible');
+    modalContainer.classList.add('is-visible');
   }
 
   // function to show details of selected pokémon
    function showDetails(pokemon) {
-   loadDetails(pokemon).then(function () {
-     showModal(pokemon);
+     loadDetails(pokemon).then(function () {
+       showModal(pokemon);
    });
   }
 
