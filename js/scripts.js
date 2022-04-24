@@ -60,13 +60,15 @@ let pokemonRepository = (function () {
 
  // function to show/hide modal
   function showModal(pokemon) {
+    let modalContainer = document.querySelector('#modal-container');
     modalContainer.innerHTML = '';
+
     let modal = document.createElement('div');
     modal.classList.add('modal');
 
-    document.querySelector('pokemon-button').addEventListener('click', () => {
-      showModal();
-    });
+    let closeButtonElement = document.createElement('button');
+    closeButtonElement.classList.add('modal-close');
+    closeButtonElement.innerText = 'Close';
 
     let text = pokemon.name;
 		let titleElement = (document.innerText = text);
@@ -95,11 +97,13 @@ let pokemonRepository = (function () {
   		imageElement.classList.add('modal-image');
   		imageElement.src = pokemon.imageUrl;
 
-  		modalTitle.append(titleElement);
-  		modalBody.append(imageElement);
-  		modalBody.append(heightElement);
-  		modalBody.append(weightElement);
-  		modalBody.append(typeElement);
+  		modal.append(titleElement);
+  		modal.append(imageElement);
+  		modal.append(heightElement);
+  		modal.append(weightElement);
+  		modal.append(typeElement);
+
+      modalContainer.classList.add('is-visible');
   }
 
   // function to show details of selected pokémon
