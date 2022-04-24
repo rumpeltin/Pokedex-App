@@ -64,6 +64,10 @@ let pokemonRepository = (function () {
     let modal = document.createElement('div');
     modal.classList.add('modal');
 
+    document.querySelector('pokemon-button').addEventListener('click', () => {
+      showModal();
+    });
+
     let text = pokemon.name;
 		let titleElement = (document.innerText = text);
 
