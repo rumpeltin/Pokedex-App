@@ -1,5 +1,6 @@
 :root {
-   --primary-color: ...;
+   --primary-color: #ffd966;
+   --secondary-color: #6fa8dc;
    --font-weight-body: 400;
    --font-size-body: 16px;
    --font-weight-headings: 700;
@@ -14,115 +15,74 @@
  and border */
 }
 
-.pokemon-button {
-  border: 1px solid blue;
-  background-color: lightBlue;
-  min-width: 100px;
-  min-height: 50px;
+.pokemon-modal-image {
+    width: 50%;
+    height: auto;
+    margin-right: 40px;
+    border-radius: 50%;
+    text-align: center;
+}
+
+.close {
+  max-width: 75px;
+  max-height: 50px;
+}
+
+button.btn-primary.search-button {
+  display: block;
+  width: 250px;
+  height: 100px;
+  line-height: 100px;
+  font-weight: normal;
+  text-decoration: none;
+  background: var(--secondary-color);
+  text-align: center;
+  color: var(--primary-color);
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  border: 4px solid #444;
+  margin: 10px;
+  transition: all .35s;
   cursor: var(--cursor-style);
 }
 
-ul {
-    list-style-type: none;
+button.btn-close {
+  color: var(--primary-color);
+  background-color: var(--secondary-color);
+  border: 1px solid black;
+  margin: 2px 5px 2px 2px;
+  float: right;
 }
 
-
-#modal-container {
-  position: fixed;
-  padding: 20px;
-  box-sizing: border-box;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-
-  /* to show it above other content */
-  z-index: 999;
-
-  /* to allow scrolling if the screen is not high enough*/
-  overflow: auto;
-
-  /* this is used to center the modal */
-  display: grid;
-  text-align: center;
-}
-#modal-container {
-  position: fixed;
-  padding: 20px;
-  box-sizing: border-box;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-
-  /* to show it above other content */
-  z-index: 999;
-
-  /* to allow scrolling if the screen is not high enough*/
-  overflow: auto;
-
-  /* this is used to center the modal */
-  display: grid;
-  text-align: center;
+div.modal-body {
+  background-color: var(--primary-color);
 }
 
-#modal-container {
-  position: fixed;
-  padding: 20px;
-  box-sizing: border-box;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
-
-  /* to show it above other content */
-  z-index: 999;
-
-  /* to allow scrolling if the screen is not high enough*/
-  overflow: auto;
-
-  /* this is used to center the modal */
-  display: grid;
-  text-align: center;
-}
-
-.modal {
-  margin: auto;
-  display: inline-block;
-  box-sizing: border-box;
-  background: #fff;
-  padding: 15px;
-  width: 100%;
-  max-width: 700px;
+div.modal-header {
+  color: var(--secondary-color);
+  font-weight: bold;
   text-align: left;
 }
 
-.modal-close {
-  float: right;
-  -webkit-appearance: none;
-  border: 0;
-  background: none;
-  color: #777;
-  text-decoration: underline;
-  cursor: var(--cursor-style); 
+div.modal-content {
+  text-align: center;
+  font-weight: bolder;
+  font-size: 25px;
 }
 
-.modal h1 {
-  margin-top: 0;
+header {
+  text-align: center
 }
 
-.modal p {
-  margin-bottom: 0;
+body {
+  background-color: var(--primary-color);
 }
 
-#modal-container {
-  display: none;
+nav {
+    background-color: black;
 }
 
-#modal-container.is-visible {
-  /* CSS for modal container - add your own desired CSS styles here */
-  display: block;
+footer.bg-dark {
+  color: white;
+  background-color: black;
 }
