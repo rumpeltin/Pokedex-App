@@ -1,6 +1,6 @@
 A simple Pokédex Web App created with HTML5, CSS, JavaScript & Bootstrap.
 
-It fetches data from an API (https://pokeapi.co)to display a list of items (Pokémons) and, upon clicking one of these items, opens up a modal with
+It fetches data from an API (https://pokeapi.co) to display a list of items (Pokémons) and, upon clicking one of these items, opens up a modal with
 details about the chosen Pokémon.
 
 Try it out!
