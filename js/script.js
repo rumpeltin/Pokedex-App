@@ -1,125 +1,130 @@
 // Pokémon IIFE
-let pokemonRepository = (function () {
-  let pokemonList = [];
-  let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=84';
+const pokemonRepository = (function () {
+  const pokemonList = [];
+  const apiUrl = 'https://pokeapi.co/api/v2/pokemon?limit=84';
 
-// Adding all Pokémon to the list
-function add (pokemon) {
-pokemonList.push(pokemon);
-}
-
-// Getting all the Pokémon from the list
-function getAll() {
-  return pokemonList;
-}
-
-// Showing the Pokémon alongside their attributes
-function addListItem (pokemon) {
-  let pokemonList = document.querySelector('.list-group');
-  let listPokemon = document.createElement('li');
-  listPokemon.classList.add('group-list-item');
-  let button = document.createElement('button');
-  button.innerText = pokemon.name;
-  button.classList.add('btn-primary', 'search-button');
-  button.setAttribute('data-toggle', 'modal');
-  button.setAttribute('data-target', '#pokemonModal');
-  listPokemon.append(button);
-  pokemonList.append(listPokemon);
-  button.addEventListener ("click", function (event) {
-    showDetails(pokemon);
-  });
-}
-
-// Load the list with JSON
-function loadList () {
-  return fetch(apiUrl).then(function (response) {
-    return response.json();
-  }).then(function (json) {
-    json.results.forEach(function (item) {
-      let pokemon = {
-        name: item.name,
-        detailsUrl: item.url
-      };
-      add(pokemon);
-    });
-  }).catch(function (e) {
-    console.error(e);
-  })
-}
-
-// Load all the Pokémon details
-async function loadDetails (item) {
-  let url = item.detailsUrl;
- try {
-   const response = await fetch(url);
-   const details = await response.json();
-  // Adds the details to the item
-    item.imageUrl = details.sprites.front_default;
-    item.height = details.height;
-    item.types = details.types;
-  } catch (e) {
-    console.error(e);
+  // Adding all Pokémon to the list
+  function add(pokemon) {
+    pokemonList.push(pokemon);
   }
-}
 
-// Show all the Pokémon details
-function showDetails (item) {
-  loadDetails(item).then(function () {
-    showModal(item);
-  });
-}
+  // Getting all the Pokémon from the list
+  function getAll() {
+    return pokemonList;
+  }
 
-// Showing & hiding the modal
+  // Showing the Pokémon alongside their attributes
+  function addListItem(pokemon) {
+    const pokemonListElement = document.querySelector('.list-group');
+    const listPokemon = document.createElement('li');
+    const button = document.createElement('button');
+
+    listPokemon.classList.add('group-list-item');
+    button.textContent = pokemon.name;
+    button.classList.add('btn-primary', 'search-button');
+    button.setAttribute('data-toggle', 'modal');
+    button.setAttribute('data-target', '#pokemonModal');
+
+    listPokemon.append(button);
+    pokemonListElement.append(listPokemon);
+
+    button.addEventListener('click', function () {
+      showDetails(pokemon);
+    });
+  }
+
+  // Load the list with JSON
+  function loadList() {
+    return fetch(apiUrl)
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (json) {
+        json.results.forEach(function (item) {
+          const pokemon = {
+            name: item.name,
+            detailsUrl: item.url,
+          };
+
+          add(pokemon);
+        });
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
+  }
+
+  // Load all the Pokémon details
+  async function loadDetails(item) {
+    try {
+      const response = await fetch(item.detailsUrl);
+      const details = await response.json();
+
+      // Adds the details to the item
+      item.imageUrl = details.sprites.front_default;
+      item.imageUrlBack = details.sprites.back_default;
+      item.height = details.height;
+      item.types = details.types;
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  // Show all the Pokémon details
+  function showDetails(item) {
+    loadDetails(item).then(function () {
+      showModal(item);
+    });
+  }
+
+  // Showing & hiding the modal
   function showModal(pokemon) {
+    const modalTitle = $('.modal-title');
+    const modalBody = $('.modal-body');
 
-    let modalTitle = $ ('.modal-title');
-    let modalBody = $ ('.modal-body');
+    const pokemonName = $(`<h2>${pokemon.name}</h2>`);
+    const pokemonHeight = $(`<p>Height: ${pokemon.height}</p>`);
+    const imageElement = $('<img class="pokemon-modal-image">');
+    const imageElementBack = $('<img class="pokemon-modal-image">');
+    const typeElement = document.createElement('p');
 
-    let pokemonName = $('<h2>' + pokemon.name + '</h2>');
-    let pokemonHeight = $('<p>' + pokemon.height + '</p>');
-    let imageElement = $ ('<img class=\'pokemon-modal-image\'>');
-    imageElement.attr ("src", pokemon.imageUrl);
-    let imageElementBack = $ ('<img class=\'pokemon-modal-image\'>');
-    imageElementBack.attr ("src", pokemon.imageUrlBack);
+    imageElement.attr('src', pokemon.imageUrl);
+    imageElementBack.attr('src', pokemon.imageUrlBack);
 
-
-    let secondElement = document.createElement('p');
-    pokemon.types.forEach((type, index) => {
-      if (index === pokemon.types.length - 1) {
-        secondElement.innerText += type.type.name;
-      } else {
-        secondElement.innerText += type.type.name + ", ";
-      }
-    })
+    typeElement.textContent = pokemon.types
+      .map(function (type) {
+        return type.type.name;
+      })
+      .join(', ');
 
     modalTitle.empty();
-    modalBody.empty();;
+    modalBody.empty();
 
     modalTitle.append(pokemonName);
     modalBody.append(imageElement);
     modalBody.append(imageElementBack);
-    modalBody.append(secondElement);
+    modalBody.append(typeElement);
     modalBody.append(pokemonHeight);
-
   }
 
-  $(document).ready(function(){
-  $('#myInput').on('keyup', function() {
-  let value = $(this).val().toLowerCase();
-  $(".search-button").filter(function() {
-  $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-  });
-  });
+  $(document).ready(function () {
+    $('#myInput').on('keyup', function () {
+      const value = $(this).val().toLowerCase();
+
+      $('.search-button').filter(function () {
+        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+      });
+    });
   });
 
   // Making all functions accessible
   return {
-  add: add,
-  getAll: getAll,
-  addListItem: addListItem,
-  loadList: loadList,
-  loadDetails: loadDetails,
-  showDetails: showDetails
+    add,
+    getAll,
+    addListItem,
+    loadList,
+    loadDetails,
+    showDetails,
   };
 })();
 

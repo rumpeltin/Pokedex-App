@@ -1,13 +1,25 @@
 :root {
- --primary-color: #ffd966;
- --secondary-color: #6fa8dc;
- }
+  --primary-color: #ffd966;
+  --secondary-color: #6fa8dc;
+}
 
+/* globals */
+body {
+  background-color: var(--primary-color);
+}
+
+footer,
+nav {
+  background-color: black;
+}
+
+/* image */
 .pokemon-modal-image {
   height: 150px;
   border-radius: 50%;
 }
 
+/* buttons */
 button.btn-primary.search-button {
   width: 250px;
   height: 100px;
@@ -25,6 +37,7 @@ button.btn-close {
   border: 1px solid black;
 }
 
+/* modal */
 div.modal-body {
   background-color: var(--primary-color);
 }
@@ -37,16 +50,18 @@ div.modal-content {
   font-size: 25px;
 }
 
-body {
-  background-color: var(--primary-color);
+/* social links */
+.social-media img {
+  width: 32px;
+  height: 32px;
+  transition: transform 0.25s ease;
 }
 
-footer, nav {
-  background-color: black;
+.social-media img:hover {
+  transform: scale(1.15);
 }
 
 /* getting the footer under control */
-
 #page-container {
   position: relative;
   min-height: 100vh;
