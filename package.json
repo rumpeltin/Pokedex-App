@@ -1,0 +1,17 @@
+{
+    "type": "module",
+  "scripts": {
+    "lint": "eslint js/**/*.js",
+    "format": "prettier --write \"**/*.{html,css,js,json,md}\"",
+    "check-format": "prettier --check \"**/*.{html,css,js,json,md}\"",
+    "clean": "rm -rf dist",
+    "build": "npm run clean && mkdir -p dist/css dist/js dist/img && cleancss -o dist/css/custom.min.css css/custom.css && terser js/script.js -o dist/js/script.min.js --compress --mangle && cp index.html dist/index.html && cp -R img/* dist/img/"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.0.0",
+    "clean-css-cli": "^5.6.3",
+    "eslint": "^9.0.0",
+    "prettier": "^3.0.0",
+    "terser": "^5.48.0"
+  }
+}

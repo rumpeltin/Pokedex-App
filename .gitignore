@@ -1,0 +1,36 @@
+# macOS
+.DS_Store
+**/.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+
+# Editors / IDEs
+.vscode/
+.idea/
+*.iml
+
+# Vim
+*.swp
+*.swo
+
+# Logs
+npm-debug.log*
+*.log
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# Build artifacts (optional)
+dist/
+
+# OS-specific
+Thumbs.db
+Desktop.ini
+
+# Dependencies
+node_modules/
