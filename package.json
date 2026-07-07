@@ -1,5 +1,5 @@
 {
-    "type": "module",
+  "type": "module",
   "scripts": {
     "lint": "eslint js/**/*.js",
     "format": "prettier --write \"**/*.{html,css,js,json,md}\"",
